@@ -82,7 +82,7 @@ counterRender = () => {
     counter.innerHTML = "Time remaining: " + count + " seconds";
     count --; // subtract 1 from count every time
   } else {
-    counter.innerHTML = "Time's up!";
+    counter.innerHTML = "⏰ Time's up!";
     timer = setInterval(0);
     nextBtn.disabled = false;
     for (let i = 0; i < choices.length; i++) {  // loop through question choices
