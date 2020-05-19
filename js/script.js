@@ -107,7 +107,8 @@ startQuiz = () => {
 
 // reset quiz
 resetQuiz = () => {
-  runningQuestion = 0;
+  score = 0; // reset back to 0
+  runningQuestion = 0; // reset back to 0
   scoreContainer.style.display = "none"; // hide score
   start.style.display = "none"; // hide Restart button after clicking
   quiz.style.display = "block";  // show quiz
@@ -118,7 +119,7 @@ resetQuiz = () => {
   counter.style.display = "block"; // show timer counter
   nextBtn.disabled = true; // disable Next button
   for (let i = 0; i < choices.length; i++) {  // loop through question choices
-    choices[i].classList.remove("disabled"); // remove disabled class to each question choice
+    choices[i].classList.remove("disabled", "correct", "wrong"); // remove disabled class to each question choice
   }
   checkAnswer = (answer, event) => { // reset checkAnswer back to default value
     if (answer == questions[runningQuestion].correct) { // if answer is equal to the value of correct in the questions array for the appropriate questions
