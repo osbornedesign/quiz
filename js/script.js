@@ -16,16 +16,22 @@ const start = document.getElementById("start"),
 
 
 // create variables
-let count = 30; // 30 sec
 const questionTime = 0;
-let timer = 0;
-let score = 0;
+let count = 30, // 30 sec
+    timer = 0,
+    score = 0;
 
 
 // create the questions
 let questions = [
   {
     question : "What is the answer to question 1?",
+    choiceA : "Correct",
+    choiceB : "Wrong",
+    correct : 'A' // this is the correct answer
+  },
+  {
+    question : "What is the answer to question 2?",
     choiceA : "Wrong",
     choiceB : "Correct",
     choiceC : "Wrong",
@@ -33,7 +39,7 @@ let questions = [
     correct : 'B' // this is the correct answer
   },
   {
-    question : "What is the answer to question 2?",
+    question : "What is the answer to question 3?",
     choiceA : "Wrong",
     choiceB : "Wrong",
     choiceC : "Correct",
@@ -41,7 +47,7 @@ let questions = [
     correct : 'C' // this is the correct answer
   },
   {
-    question : "What is the answer to question 3?",
+    question : "What is the answer to question 4?",
     choiceA : "Wrong",
     choiceB : "Wrong",
     choiceC : "Wrong",
@@ -65,6 +71,14 @@ questionRender = () => {
   choiceB.innerHTML = q.choiceB;
   choiceC.innerHTML = q.choiceC;
   choiceD.innerHTML = q.choiceD;
+
+  for (let i = 0; i < choices.length; i++) {
+    if (choices[i].innerHTML === "undefined") {
+      choices[i].style.display = "none";
+    } else {
+      choices[i].style.display = "block";
+    }
+  }
 }
 
 
@@ -178,7 +192,7 @@ nextQuestion = () => {
     counterRender();
   } else {
     nextBtn.disabled = false; // disable the next button
-    scoreContainer.innerHTML = "<h1 class='text-center'>🎉</h1><h2 class='text-center'>Your score is " + Math.round(score / 3 * 100) + "%</h2>"; // write the score
+    scoreContainer.innerHTML = "<h1 class='text-center'>🎉</h1><h2 class='text-center'>Your score is " + Math.round(score / questions.length * 100) + "%</h2>"; // write the score
     scoreContainer.style.display = "block"; // show score
     quiz.style.display = "none";  // hide quiz
     counter.style.display = "none"; // hide timer counter
