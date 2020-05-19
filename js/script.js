@@ -97,12 +97,42 @@ counterRender = () => {
 startQuiz = () => {
   scoreContainer.style.display = "none"; // hide score
   start.style.display = "none"; // hide Start button after clicking
-  questionRender();
   quiz.style.display = "block";  // show quiz
+  questionRender();
   progressRender();
   counterRender();
   timer = setInterval(counterRender,1000); // 1000ms = 1 second
 }
+
+
+// reset quiz
+resetQuiz = () => {
+  runningQuestion = 0;
+  scoreContainer.style.display = "none"; // hide score
+  start.style.display = "none"; // hide Restart button after clicking
+  quiz.style.display = "block";  // show quiz
+  questionRender();
+  count = 30; // reset back to 30
+  counterRender();
+  thankYouMessage.style.display = "none";  // hide Thank You message in header
+  counter.style.display = "block"; // show timer counter
+  nextBtn.disabled = true; // disable Next button
+  for (let i = 0; i < choices.length; i++) {  // loop through question choices
+    choices[i].classList.remove("disabled"); // remove disabled class to each question choice
+  }
+  checkAnswer = (answer, event) => { // reset checkAnswer back to default value
+    if (answer == questions[runningQuestion].correct) { // if answer is equal to the value of correct in the questions array for the appropriate questions
+      score++; // add 1 to the score when it's correct
+      answerIsCorrect(event);
+    } else {
+      answerIsWrong(event);
+    }
+  }
+  for (let i = 0; i < prog.length; i++) {  // loop through prog
+    prog[i].style.cssText =  "background-color: #fff; border: 1px solid #acb3bb";  // change background color of the prog circle
+  }
+}
+
 
 
 // run startQuiz function
@@ -155,6 +185,8 @@ nextQuestion = () => {
     thankYouMessage.style.display = "block";  // show Thank You message in header
     start.innerHTML = "Retake quiz";
     start.style.display = "inline-block"; // show Restart Quiz button after clicking
+    start.removeEventListener("click",startQuiz); // when clicking the Start button, remove the startQuiz function
+    start.addEventListener("click",resetQuiz); // when clicking the Restart Quiz button, run the resetQuiz function
   }
 }
 
