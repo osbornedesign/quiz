@@ -161,7 +161,6 @@ handleCheckAnswer = (answer, event) => { // (answer) is stored in the HTML on th
 // next question button
 nextQuestion = () => {
   nextBtn.disabled = true; // disable the next button
-  count = 30; // set timer count back to 30
   if (runningQuestion < lastQuestion) { // if the array position is less than the number of questions in the array, then run the if statement
     runningQuestion++;
     questionRender();
@@ -204,6 +203,7 @@ answerIsCorrect = (evt) => {
 
 // answer is wrong
 answerIsWrong = (evt) => {
+  count -= 5;
   prog[runningQuestion].style.cssText = "background-color: #e63131; border: 1px solid #e63131";  // change background color of the prog circle to red
   for (let i = 0; i < choices.length; i++) { // loop through question choices
     choices[i].classList.add("disabled"); // add disabled class to each question choice
