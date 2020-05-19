@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google font Nunito -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Bootstrap Reboot -->
+  <link rel="stylesheet" href="reboot.css">
+  <!-- Custom styling -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Custom javascript -->
+  <title>Quiz</title>
+</head>
+<body>
+  <header>
+      <div id="timer">
+        <div id="counter">Click start to begin!</div>
+        <div id="thankYouMessage" style="display: none">Thanks for taking the quiz!</div>
+      </div>
+  </header>
+  <section>
+      <div id="scoreContainer" class="score-container"></div>
+      <div class="text-center">
+        <button id="start" class="btn primary">Start Quiz</button>
+      </div>
+      <div id="quizContainer" class="quiz-container" style="display: none">
+        <div id="question">
+          <p>What is the answer to this question?</p>
+        </div>
+        <div class="choices">
+          <div class="choice" id="A" onClick="handleCheckAnswer('A', event)">A</div>
+          <div class="choice" id="B" onClick="handleCheckAnswer('B', event)">B</div>
+          <div class="choice" id="C" onClick="handleCheckAnswer('C', event)">C</div>
+          <div class="choice" id="D" onClick="handleCheckAnswer('D', event)">D</div>
+        </div>
+        <button id="nextBtn" class="btn secondary" onClick="nextQuestion()" disabled>Next</button>
+      </div>
+    </div>
+  </section>
+  <footer>
+      <div style="display: inline-block" id="progress">
+        <span>3 questions </span>
+      </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
